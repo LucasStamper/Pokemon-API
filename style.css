@@ -1,0 +1,357 @@
+/* style.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Une police moderne */
+    
+    /* --- INTEGRATION IMAGE DE FOND --- */
+    /* Remplace 'chemin/vers/ton/image.jpg' par le vrai chemin */
+    background-image: url('assets/background-pokeapp.jpg'); 
+    background-size: cover; /* Couvre tout l'écran */
+    background-position: center; /* Centre l'image */
+    background-attachment: fixed; /* L'image ne défile pas avec la page */
+    background-repeat: no-repeat;
+    
+    /* Optionnel : Un léger voile pour garantir la lisibilité du texte */
+    background-color: rgba(246, 248, 252, 0.85); 
+    background-blend-mode: overlay;
+    /* --------------------------------- */
+    
+    color: #333;
+}
+
+/* style.css - Header & Filtres */
+h1 {
+    text-align: center;
+    color: #ef5350; /* Rouge Pokeball */
+    font-size: 2.5rem;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+#filter-container {
+    position: sticky;
+    top: 20px; /* Décalage du haut de l'écran pour ne pas être collé */
+    z-index: 100; /* Pour passer au-dessus des cartes Pokémon */
+    
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px 25px;
+    
+    /* Effet moderne : Glassmorphism */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    max-width: 700px;
+    margin: 0 auto 30px auto; /* Centre le container horizontalement */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#search-input, #type-filter {
+    padding: 12px 20px;
+    border: 2px solid #eee;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+#search-input { flex-grow: 2; }
+#type-filter { flex-grow: 1; cursor: pointer; }
+
+#search-input:focus, #type-filter:focus {
+    border-color: #ef5350;
+    outline: none;
+    box-shadow: 0 0 10px rgba(239, 83, 80, 0.2);
+}
+
+/* style.css - Pokedex Grid & Cards */
+#pokedex-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    padding-bottom: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pokemon-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden; /* Pour l'effet Pokeball en fond */
+    border: 1px solid #f0f0f0;
+    padding-bottom: 25px; /* On laisse de la place sous les badges */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Effet au survol */
+.pokemon-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* Un petit motif Pokeball subtil en fond de carte */
+.pokemon-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(239, 83, 80, 0.03); /* Rouge très très pâle */
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.pokemon-card * { position: relative; z-index: 1; } /* Force le contenu devant le motif */
+
+.pokemon-id {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: #aaa;
+    font-weight: bold;
+}
+
+.pokemon-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.05));
+}
+
+.pokemon-name {
+    margin: 15px 0 10px 0;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    color: #333;
+}
+
+/* Conteneur des badges dans la carte */
+.card-types {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap; 
+}
+
+/* Style de base des badges */
+.badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    min-width: 60px;
+}
+
+/* Palette de couleurs */
+.grass { background-color: #7AC74C; }
+.fire { background-color: #EE8130; }
+.water { background-color: #6390F0; }
+.bug { background-color: #A6B91A; }
+.normal { background-color: #A8A77A; }
+.poison { background-color: #A33EA1; }
+.electric { background-color: #F7D02C; color: #333; }
+.ground { background-color: #E2BF65; }
+.fairy { background-color: #D685AD; }
+.fighting { background-color: #C22E28; }
+.psychic { background-color: #F95587; }
+.rock { background-color: #B6A136; }
+.ghost { background-color: #735797; }
+.ice { background-color: #96D9D6; color: #333; }
+.dragon { background-color: #6F35FC; }
+.steel { background-color: #B7B7CE; }
+.dark { background-color: #705746; }
+.flying { background-color: #A98FF3; }
+
+/* style.css - Button */
+#load-more-container {
+    position: fixed;
+    bottom: 30px; /* Distance par rapport au bas de l'écran */
+    left: 50%;
+    transform: translateX(-50%); /* Technique pour centrer parfaitement un élément fixed */
+    z-index: 100;
+}
+
+#load-more {
+    padding: 12px 30px;
+    background-color: #ef5350;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(239, 83, 80, 0.4);
+    transition: all 0.3s ease;
+}
+
+#load-more:hover {
+    transform: scale(1.05);
+    background-color: #d32f2f;
+}
+
+#load-more:active {
+    transform: translateY(-1px);
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* style.css - Section Modale Transformée */
+
+/* 1. L'Overlay (Fond Flouté) */
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Voile sombre léger */
+    backdrop-filter: blur(10px);    /* --- EFFET VERRE BLUR --- */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Assure d'être au-dessus de tout */
+    padding: 20px;
+}
+
+/* 2. La Carte Modale (Le Conteneur) */
+.modal-content {
+    background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px; /* Taille contenue comme sur image_0.png */
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Pour les effets de fond */
+}
+
+/* 3. Le Nouveau Bouton de Fermeture */
+#close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#close-modal:hover {
+    background: #ef5350; /* Rouge Pokeball */
+    color: white;
+    transform: scale(1.1);
+}
+
+/* 4. Le Titre et l'Image */
+.modal-content h2 {
+    font-size: 2.2rem;
+    color: #333;
+    text-transform: capitalize; /* Juste la première lettre */
+    margin-bottom: 20px;
+}
+
+.modal-content .main-img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 25px;
+    /* Petit effet de lueur douce */
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.7));
+}
+
+/* 5. Les Statistiques Modernes */
+.stats-container {
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.stat-line {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.stat-name {
+    width: 130px; /* Plus d'espace pour le texte */
+    font-size: 0.85rem;
+    color: #666;
+    text-align: right;
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.stat-bar-container {
+    flex-grow: 1;
+    background: #e0e0e0;
+    height: 12px; /* Plus épaisse */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.stat-bar {
+    background: #ff7675; /* Rouge doux par défaut */
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease-out; /* Animation à l'ouverture */
+}
+
+/* 6. Classes de couleur dynamique (utilisées par JS) */
+.low-stat { background-color: #ff7675; }
+.med-stat { background-color: #fdcb6e; }
+.high-stat { background-color: #55efc4; }
+
+.stat-value {
+    width: 40px;
+    text-align: left;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #333;
+}

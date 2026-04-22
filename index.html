@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeAPI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/pikachu.png">
+</head>
+
+<body>
+    <div id="filter-container">
+        <input type="text" id="search-input" placeholder="Rechercher un Pokémon...">
+        <select id="type-filter">
+            <option value="all">Tous les types</option>
+        </select>
+    </div>
+
+    <div id="pokedex-container">
+    </div>
+
+    <button id="load-more">Charger plus</button>
+    <script src="src/api.js"></script>
+    <script src="src/ui.js"></script>
+    <script src="src/app.js"></script>
+</body>
+
+</html>

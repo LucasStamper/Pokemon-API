@@ -48,4 +48,4 @@ Au cours de ce développement, j'ai approfondi plusieurs notions clés :
 ## ⚙️ Installation
 1. Clonez le dépôt :
    ```bash
-   git clone [https://github.com/votre-pseudo/pokedex-api.git](https://github.com/votre-pseudo/pokedex-api.git)
+   git clone [https://github.com/LucasStamper/Pokemon-API.git]
